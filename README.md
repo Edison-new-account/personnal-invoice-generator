@@ -1,54 +1,72 @@
-# React + TypeScript + Vite
+# 📌 PERSONNAL-INVOICE-GENERATOR
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Une application intuitive et dynamique qui vous permet de créer, modifier et gérer vos factures de bout en bout. Téléchargez vos factures finalisées ou importez-en de nouvelles en respectant un modèle JSON prédéfini pour une intégration fluide.
 
-Currently, two official plugins are available:
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Licence](https://img.shields.io/badge/licence-MIT-blue)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Fonctionnalités
 
-## Expanding the ESLint configuration
+- ✅ Construisez votre facture étape par étape en modifiant facilement les sections concernées d'un simple clic.
+- ✅ Téléchargez vos factures au format PDF.
+- ✅ Exportez un modèle JSON préformaté pour une utilisation future.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📦 Installation
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Prérequis
+
+- [Node.js](https://nodejs.org/) >= 16
+
+### Étapes d'installation
+
+```sh
+# Cloner le dépôt
+git clone https://github.com/Edison-new-account/personnal-invoice-generator.git
+cd personnal-invoice-generator
+
+# Installer les dépendances
+yarn install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ▶ Utilisation
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Démarrer l'application en mode développement :
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```sh
+yarn dev
 ```
+
+### Lancer en production :
+
+```sh
+yarn start
+```
+
+## 🏗 Architecture du Projet
+
+```
+/src
+   ├── components/   # Composants UI (React/Vite/Shadcn)
+   ├── assets
+   ├── services/     # Gestion des requêtes API
+   ├── libs/         # Fonctions utilitaires
+   ├── routes/
+   ├── screens/
+   ├── styles/       # Fichiers de configuration
+   ├── tests/        # Tests unitaires et d'intégration
+```
+
+## 🔧 Déploiement
+
+Instructions pour déployer l'application :
+
+## 📜 Licence
+
+Ce projet est sous licence **MIT** – voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+## 📞 Contact
+
+- 📧 Email: kassinedisongithub@gmail.com
+- 🌐 Site Web: [www.exemple.com](https://www.exemple.com)
+- 🐙 GitHub: [@Edison-new-account](https://github.com/Edison-new-account)
+
+
