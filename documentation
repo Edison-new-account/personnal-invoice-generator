@@ -1,0 +1,10 @@
+// Etape 1
+1) creer le projet avec vite
+2) creer les routes
+3) creer les composants
+4) creer les styles
+5) creer les variables
+
+
+// Etape 2
+configurer sass en installant yarn add -D sass-embedded
