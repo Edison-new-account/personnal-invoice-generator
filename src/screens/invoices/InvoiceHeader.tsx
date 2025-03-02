@@ -90,7 +90,7 @@ const InvoiceHeader = ({ invoice, pdfMode, onChange }: InvoiceHeaderProps) => {
             pdfMode={pdfMode}
             className="logo mb-5"
             placeholder="Your Logo"
-            width={header.author.logo_width}
+            width={header.author.logo_width ?? 100}
           />
           <CustomInput
             className="fs-20 bold"

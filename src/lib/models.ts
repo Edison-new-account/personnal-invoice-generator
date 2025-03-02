@@ -41,7 +41,7 @@ const InvoiceHeader = z.object({
     phone: z.string().optional(),
     email: z.string().optional(),
     logo: z.string().optional(),
-    logo_width: z.number().optional(),
+    logo_width: z.number().optional().default(100),
   }),
   bill_to: z.object({
     name: z.string(),
@@ -106,6 +106,7 @@ export const defaultInvoiceLabel: InvoiceLabel = {
 export const defaultInvoiceHeader: InvoiceHeader = {
   author: {
     name: "",
+    logo_width: 100,
   },
   bill_to: {
     name: "",

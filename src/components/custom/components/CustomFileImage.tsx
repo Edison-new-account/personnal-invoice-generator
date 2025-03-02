@@ -41,31 +41,19 @@ const CustomFileImage = ({
   const widthWrapperRef = useRef<HTMLDivElement>(null);
   const [isEditing, setIsEditing] = useState(false);
 
-  const handleChange = () => {
-    if (fileInputRef?.current?.files) {
-      const files = fileInputRef.current.files;
-
-      if (files.length > 0 && typeof onChange === "function") {
-        const reader = new FileReader();
-
-        reader.addEventListener("load", () => {
-          if (typeof reader.result === "string") {
-            onChange(name, reader.result);
-          }
-        });
-
-        reader.readAsDataURL(files[0]);
-      }
-    }
-  };
-
   const imageClassname = "image " + (className ?? "");
 
   if (!value && pdfMode) {
     return <></>;
   }
+
   if (pdfMode) {
-    return <Image style={{ ...compose(imageClassname), width }} src={value} />;
+    return (
+      <Image
+        style={{ ...compose(imageClassname), maxWidth: width ?? 100 }}
+        src={value}
+      />
+    );
   }
 
   const handleUpload = () => {
@@ -85,6 +73,24 @@ const CustomFileImage = ({
   const handleChangeWidth = (value: number | number[]) => {
     if (typeof onChangeWidth === "function") {
       onChangeWidth(name, _.isArray(value) ? (value[0] as number) : value);
+    }
+  };
+
+  const handleChange = () => {
+    if (fileInputRef?.current?.files) {
+      const files = fileInputRef.current.files;
+
+      if (files.length > 0 && typeof onChange === "function") {
+        const reader = new FileReader();
+
+        reader.addEventListener("load", () => {
+          if (typeof reader.result === "string") {
+            onChange(name, reader.result);
+          }
+        });
+
+        reader.readAsDataURL(files[0]);
+      }
     }
   };
 
@@ -135,6 +141,7 @@ const CustomFileImage = ({
             }}
           />
 
+          {/* Resize logo slider*/}
           {isEditing && (
             <ClickAwayListener
               onClickAway={() => {
