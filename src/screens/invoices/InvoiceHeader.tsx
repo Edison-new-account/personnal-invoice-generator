@@ -8,6 +8,7 @@ import countryList from "@/lib/countryList";
 import _ from "lodash";
 import CustomCalendar from "@/components/custom/components/CustomCalendar";
 import { GenericObject } from "@/lib/global";
+import CustomFileImage from "@/components/custom/components/CustomFileImage";
 
 interface InvoiceHeaderProps {
   invoice: Invoice;
@@ -79,6 +80,18 @@ const InvoiceHeader = ({ invoice, pdfMode, onChange }: InvoiceHeaderProps) => {
       <CustomDiv className="flex justify-between" pdfMode={pdfMode}>
         {/* FROM */}
         <CustomDiv className="w-50" pdfMode={pdfMode}>
+          <CustomFileImage
+            name="logo"
+            value={header.author.logo}
+            onChange={(name, value) => handleChange(name, value, "author")}
+            onChangeWidth={(_name, value) =>
+              handleChange("logo_width", value, "author")
+            }
+            pdfMode={pdfMode}
+            className="logo mb-5"
+            placeholder="Your Logo"
+            width={header.author.logo_width}
+          />
           <CustomInput
             className="fs-20 bold"
             placeholder="Your Company"

@@ -73,12 +73,9 @@
   transition:
     height 0.2s,
     font-size 0.2s;
-
-  &:focus,
-  &:hover {
-    height: 100px;
+     height: 100px;
     font-size: 14px;
-  }
+
 }
 
 .image__img {
@@ -90,7 +87,7 @@
   font-size: 14px;
   color: $placeholder-color;
   background-color: $color-gray;
-  border: 2px dashed $placeholder-color;
+  border: 1px dashed $placeholder-color;
   position: absolute;
   top: 0;
   left: 0;
@@ -101,46 +98,45 @@
 
   &:hover,
   &:focus {
-    opacity: 0.95;
+    opacity: 0.60;
   }
+}
+
+.image__edit {
+  right: 20px;
+  color: $color-gray;
+}
+
+.image__remove {
+  right: 2px;
+  color: $color-gray;
+  background-color: $color-white;
 }
 
 .image__edit,
 .image__remove {
-  background: #999 no-repeat center center;
-  background-size: 10px 10px;
-  border: 0;
+  cursor: pointer;
   border-radius: 50%;
-  padding: 0;
   position: absolute;
-  width: 20px;
-  height: 20px;
-  top: -10px;
+  padding: 0px;
+  top: -7px;
+  background: #fff no-repeat center center;
+  background-size: 10px 10px;
   text-indent: -9999em;
   opacity: 0;
-  transition:
-    opacity 0.2s,
-    background-color 0.2s;
+  transition: opacity 0.2s
+     background-color 0.2s;
+
 
   &:hover,
   &:focus {
-    background-color: #666;
+    opacity: 0.5;
   }
 
   .image:hover &,
   .image:focus-within & {
     opacity: 1;
   }
-}
-
-.image__edit {
-  background-image: url('../images/resize.svg');
-  right: 20px;
-}
-
-.image__remove {
-  background-image: url('../images/remove.svg');
-  right: -10px;
 }
 
 .image__width-wrapper {

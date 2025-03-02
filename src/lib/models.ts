@@ -41,6 +41,7 @@ const InvoiceHeader = z.object({
     phone: z.string().optional(),
     email: z.string().optional(),
     logo: z.string().optional(),
+    logo_width: z.number().optional(),
   }),
   bill_to: z.object({
     name: z.string(),
