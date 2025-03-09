@@ -19,7 +19,7 @@ const CustomInputFileToActionButton = ({
   };
 
   return (
-    <div>
+    <>
       <CustomButtonAction
         Icon={Icon}
         title={title}
@@ -33,7 +33,7 @@ const CustomInputFileToActionButton = ({
         onChange={onChange}
         className="hidden"
       />
-    </div>
+    </>
   );
 };
 

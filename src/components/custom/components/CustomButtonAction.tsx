@@ -11,7 +11,7 @@ const CustomButtonAction = ({
   onClick,
   tooltip,
 }: {
-  Icon: React.ReactNode;
+  Icon?: React.ReactNode;
   title: string;
   onClick?: () => void;
   tooltip?: string;
@@ -20,7 +20,7 @@ const CustomButtonAction = ({
     <Tooltip>
       <TooltipTrigger asChild>
         <button
-          className="flex flex-col items-center justify-center bg-gray-500 text-white p-2 text-center w-30 cursor-pointer hover:bg-gray-600"
+          className="flex items-center justify-center bg-gray-500 text-white p-1 text-center cursor-pointer hover:bg-gray-600"
           title={title}
           onClick={onClick}
         >

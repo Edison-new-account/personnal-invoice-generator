@@ -43,6 +43,7 @@ const InvoiceHeader = z.object({
     logo: z.string().optional(),
     logo_width: z.number().optional().default(100),
   }),
+
   bill_to: z.object({
     name: z.string(),
     address: z.string().optional(),
@@ -84,7 +85,14 @@ export const TInvoice = z.object({
   label: InvoiceLabel,
 });
 
-export type Invoice = TypeOf<typeof TInvoice>; //z.infer<typeof Invoice>;
+export type Invoice = TypeOf<typeof TInvoice>;
+
+export type InvoiceTemplate = {
+  id: string;
+  created_at: Date;
+  status: "paid" | "pending" | "draft";
+  invoice: Invoice;
+};
 
 export const defaultInvoiceLabel: InvoiceLabel = {
   title: "Invoice",

@@ -1,5 +1,3 @@
-import InvoiceDocument from "./InvoiceDocument";
-import InvoiceActions from "./InvoiceActions";
 import {
   defaultInvoiceBody,
   defaultInvoiceFooter,
@@ -9,28 +7,30 @@ import {
 } from "@/lib/models";
 import { useState } from "react";
 
+import InvoicePageRoutes from "@/routes/InvoicePageRoutes";
+import { InvoiceContext } from "@/contexts/invoiceContext";
+
+const defaultInvoice: Invoice = {
+  label: defaultInvoiceLabel,
+  header: defaultInvoiceHeader,
+  body: defaultInvoiceBody,
+  footer: defaultInvoiceFooter,
+};
+
 const InvoicesPage = () => {
-  const [invoice, setInvoice] = useState<Invoice>({
-    label: defaultInvoiceLabel,
-    header: defaultInvoiceHeader,
-    body: defaultInvoiceBody,
-    footer: defaultInvoiceFooter,
-  });
+  const [invoice, setInvoice] = useState<Invoice>(defaultInvoice);
+
+  const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
+
   return (
-    <div className="flex gap-5">
-      <div className="w-1/3">
-        <InvoiceActions invoice={invoice} setInvoice={setInvoice} />
-      </div>
-
-      <div className="app">
-        <div className="flex justify-center items-center">
-          <img src="/logo.svg" alt="logo" className="w-30 mb-2" />
-          <h1 className="center fs-30 my-4">Edison's Invoice Generator</h1>
-        </div>
-
-        <InvoiceDocument invoice={invoice} setInvoice={setInvoice} />
-      </div>
-    </div>
+    <InvoiceContext.Provider
+      value={{
+        invoiceId,
+        setInvoiceId,
+      }}
+    >
+      <InvoicePageRoutes invoice={invoice} setInvoice={setInvoice} />
+    </InvoiceContext.Provider>
   );
 };
 

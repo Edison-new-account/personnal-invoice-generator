@@ -2,13 +2,13 @@ import CustomInput from "@/components/custom/components/CustomInput";
 import CustomDiv from "@/components/custom/CustomDiv";
 import { Invoice } from "@/lib/models";
 import { useEffect, useState } from "react";
-import { format } from "date-fns/format";
 import CustomSelect from "@/components/custom/components/CustomSelect";
 import countryList from "@/lib/countryList";
 import _ from "lodash";
 import CustomCalendar from "@/components/custom/components/CustomCalendar";
 import { GenericObject } from "@/lib/global";
 import CustomFileImage from "@/components/custom/components/CustomFileImage";
+import { formatDate } from "./utils";
 
 interface InvoiceHeaderProps {
   invoice: Invoice;
@@ -69,11 +69,6 @@ const InvoiceHeader = ({ invoice, pdfMode, onChange }: InvoiceHeaderProps) => {
   //     }
   //     return cityStateZip;
   //   };
-
-  const getDate = (date: Date) => {
-    const dateFormat = "MMM dd, yyyy";
-    return format(date, dateFormat);
-  };
 
   return (
     <CustomDiv pdfMode={pdfMode}>
@@ -229,8 +224,8 @@ const InvoiceHeader = ({ invoice, pdfMode, onChange }: InvoiceHeaderProps) => {
             </CustomDiv>
             <CustomDiv className="w-60" pdfMode={pdfMode}>
               <CustomCalendar
-                placeholder={getDate(new Date())}
-                value={getDate(new Date(header.invoice.date))}
+                placeholder={formatDate(new Date())}
+                value={formatDate(new Date(header.invoice.date))}
                 selectedDate={new Date(header.invoice.date)}
                 onChange={(name, value) => {
                   handleChange(name, value as Date, "invoice");
@@ -254,8 +249,8 @@ const InvoiceHeader = ({ invoice, pdfMode, onChange }: InvoiceHeaderProps) => {
             </CustomDiv>
             <CustomDiv className="w-60" pdfMode={pdfMode}>
               <CustomCalendar
-                placeholder={getDate(new Date())}
-                value={getDate(new Date(header.invoice.due_date))}
+                placeholder={formatDate(new Date())}
+                value={formatDate(new Date(header.invoice.due_date))}
                 selectedDate={new Date(header.invoice.due_date)}
                 onChange={(name, value) => {
                   handleChange(name, value as Date, "invoice");
