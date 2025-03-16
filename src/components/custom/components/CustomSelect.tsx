@@ -54,7 +54,10 @@ const CustomSelect = ({
           onBlur={() => setIsEditing(false)}
           value={value}
           autoFocus={autoFocus}
-          onMouseLeave={() => setIsEditing(false)}
+          onMouseLeave={(e) => {
+            e.preventDefault();
+            setIsEditing(false);
+          }}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
