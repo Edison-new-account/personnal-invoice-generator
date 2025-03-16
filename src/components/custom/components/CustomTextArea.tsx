@@ -11,6 +11,9 @@ interface CustomTextAreaProps {
   value?: string;
   rows?: number;
   name: string;
+  readOnly?: boolean;
+  resizable?: boolean;
+  style?: Record<string, string>;
 }
 
 const CustomTextArea = ({
@@ -21,6 +24,9 @@ const CustomTextArea = ({
   value,
   rows,
   name,
+  readOnly,
+  resizable,
+  style,
 }: CustomTextAreaProps) => {
   const classeTextArea = "input " + (className ?? "");
   const classeSpan = "span " + (className ?? "");
@@ -42,6 +48,8 @@ const CustomTextArea = ({
       onChange={handleChange}
       value={value}
       rows={rows ?? 1}
+      readOnly={readOnly}
+      style={{ resize: resizable ? "none" : undefined, ...style }}
     />
   );
 };

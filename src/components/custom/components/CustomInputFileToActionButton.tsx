@@ -6,12 +6,14 @@ interface CustomInputFileToActionButtonProps {
   title: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   tooltip?: string;
+  readOnly?: boolean;
 }
 const CustomInputFileToActionButton = ({
   Icon,
   title,
   onChange,
   tooltip,
+  readOnly,
 }: CustomInputFileToActionButtonProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const handleClick = () => {
@@ -32,6 +34,7 @@ const CustomInputFileToActionButton = ({
         ref={fileInputRef}
         onChange={onChange}
         className="hidden"
+        readOnly={readOnly}
       />
     </>
   );

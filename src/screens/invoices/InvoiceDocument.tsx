@@ -8,6 +8,7 @@ import { Font } from "@react-pdf/renderer";
 
 interface InvoiceDocumentProps {
   pdfMode?: boolean;
+  readonly?: boolean;
   invoice: Invoice;
   setInvoice?: (invoice: Invoice) => void;
 }
@@ -28,6 +29,7 @@ const InvoiceDocument = ({
   pdfMode,
   invoice,
   setInvoice,
+  readonly,
 }: InvoiceDocumentProps) => {
   const handleChange = (name: string, value: any) => {
     setInvoice?.({ ...invoice, [name]: value });
@@ -39,18 +41,21 @@ const InvoiceDocument = ({
         <InvoiceHeader
           invoice={invoice}
           pdfMode={pdfMode}
+          readonly={readonly}
           onChange={handleChange}
         />
 
         <InvoiceTable
           invoice={invoice}
           pdfMode={pdfMode}
+          readonly={readonly}
           onChange={handleChange}
         />
 
         <InvoiceFooter
           invoice={invoice}
           pdfMode={pdfMode}
+          readonly={readonly}
           onChange={handleChange}
         />
       </CustomPage>

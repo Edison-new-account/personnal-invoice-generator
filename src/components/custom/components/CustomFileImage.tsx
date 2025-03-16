@@ -18,6 +18,7 @@ interface CustomFileImageProps {
   name: string;
   width?: number;
   placeholder?: string;
+  readonly?: boolean;
 }
 
 const MARKS = {
@@ -36,6 +37,7 @@ const CustomFileImage = ({
   name,
   width,
   placeholder,
+  readonly,
 }: CustomFileImageProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const widthWrapperRef = useRef<HTMLDivElement>(null);
@@ -142,7 +144,7 @@ const CustomFileImage = ({
           />
 
           {/* Resize logo slider*/}
-          {isEditing && (
+          {isEditing && !readonly && (
             <ClickAwayListener
               onClickAway={() => {
                 if (isEditing) {
@@ -173,6 +175,7 @@ const CustomFileImage = ({
         accept="image/*"
         className="image__file"
         onChange={handleChange}
+        readOnly={readonly}
       />
     </div>
   );

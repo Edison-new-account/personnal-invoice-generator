@@ -10,6 +10,7 @@ import { useState } from "react";
 interface InvoiceTableItemProps {
   item: InvoiceItem & { index: number };
   pdfMode?: boolean;
+  readonly?: boolean;
   onChange?: (name: string, value: GenericType, index: number) => void;
   onRemove?: (index: number) => void;
 }
@@ -17,6 +18,7 @@ interface InvoiceTableItemProps {
 const InvoiceTableItem = ({
   item,
   pdfMode,
+  readonly,
   onChange,
   onRemove,
 }: InvoiceTableItemProps) => {
@@ -47,6 +49,8 @@ const InvoiceTableItem = ({
           pdfMode={pdfMode}
           name={`description`}
           onChange={handleChange}
+          readOnly={readonly}
+          resizable={readonly}
         />
       </CustomDiv>
 
@@ -59,6 +63,7 @@ const InvoiceTableItem = ({
           pdfMode={pdfMode}
           name={`quantity`}
           type={InputType.NUMBER}
+          readonly={readonly}
         />
       </CustomDiv>
 
@@ -71,6 +76,7 @@ const InvoiceTableItem = ({
           name={`price`}
           type={InputType.NUMBER}
           onChange={handleChange}
+          readonly={readonly}
         />
       </CustomDiv>
 
@@ -80,7 +86,7 @@ const InvoiceTableItem = ({
         </CustomText>
       </CustomDiv>
 
-      {!pdfMode && (
+      {!pdfMode && !readonly && (
         <button
           className="link row__remove"
           aria-label="Remove Row"

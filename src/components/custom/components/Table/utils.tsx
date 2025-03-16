@@ -10,15 +10,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { JSX } from "react";
 
 export interface IColumn {
   key: string;
   title: string;
   order?: boolean;
   hide?: boolean;
-  type?: "text" | "number" | "date" | "currency";
+  type?: "text" | "number" | "date" | "currency" | "component";
   style?: "uppercase" | "capitalize" | "lowercase";
   resizable?: boolean;
+  component?: (rowData: any) => JSX.Element | null;
   actions?: Array<{
     label: string;
     onClick: (rowData: any) => void;
@@ -51,7 +53,7 @@ export function createColumnDef<T>(column: IColumn): ColumnDef<T> {
         case "currency":
           value = new Intl.NumberFormat("en-US", {
             style: "currency",
-            currency: "USD",
+            currency: (row.original as any).currency ?? "USD",
           }).format(Number(value));
           break;
         case "date":
@@ -59,6 +61,13 @@ export function createColumnDef<T>(column: IColumn): ColumnDef<T> {
           break;
         case "number":
           value = Number(value).toLocaleString();
+          break;
+
+        case "component":
+          value = column.component ? column.component(row.original) : null;
+          break;
+        default:
+          // Par défaut, on garde la valeur brute (type "text" ou non spécifié)
           break;
       }
 

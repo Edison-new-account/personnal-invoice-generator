@@ -1,24 +1,13 @@
-import {
-  defaultInvoiceBody,
-  defaultInvoiceFooter,
-  defaultInvoiceHeader,
-  defaultInvoiceLabel,
-  Invoice,
-} from "@/lib/models";
+import { Invoice } from "@/lib/models";
 import { useState } from "react";
 
 import InvoicePageRoutes from "@/routes/InvoicePageRoutes";
 import { InvoiceContext } from "@/contexts/invoiceContext";
-
-const defaultInvoice: Invoice = {
-  label: defaultInvoiceLabel,
-  header: defaultInvoiceHeader,
-  body: defaultInvoiceBody,
-  footer: defaultInvoiceFooter,
-};
+import { defaultInvoice } from "@/lib/utils";
 
 const InvoicesPage = () => {
   const [invoice, setInvoice] = useState<Invoice>(defaultInvoice);
+  const [readOnly, setReadOnly] = useState<boolean>(false);
 
   const [invoiceId, setInvoiceId] = useState<string | undefined>(undefined);
 
@@ -27,9 +16,14 @@ const InvoicesPage = () => {
       value={{
         invoiceId,
         setInvoiceId,
+        setReadOnly,
       }}
     >
-      <InvoicePageRoutes invoice={invoice} setInvoice={setInvoice} />
+      <InvoicePageRoutes
+        invoice={invoice}
+        setInvoice={setInvoice}
+        readonly={readOnly}
+      />
     </InvoiceContext.Provider>
   );
 };

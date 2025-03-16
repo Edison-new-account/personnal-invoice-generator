@@ -23,7 +23,8 @@ const invoiceSlice = createSlice({
       );
 
       if (index !== -1) {
-        state.invoices[index] = action.payload;
+        // Crée une nouvelle copie de l'objet payload pour éviter les mutations externes
+        state.invoices[index] = { ...action.payload };
       }
     },
 

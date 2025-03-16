@@ -7,12 +7,14 @@ import { useState } from "react";
 interface InvoiceTableHeaderProps {
   invoice: Invoice;
   pdfMode?: boolean;
+  readonly?: boolean;
   onChange?: (name: string, value: GenericObject) => void;
 }
 
 const InvoiceTableHeader = ({
   invoice,
   pdfMode,
+  readonly,
   onChange,
 }: InvoiceTableHeaderProps) => {
   const [invoiceLabel, setInvoiceLabel] = useState<Invoice["label"]>(
@@ -37,6 +39,7 @@ const InvoiceTableHeader = ({
           onChange={handleChangeLabel}
           pdfMode={pdfMode}
           name="item_description"
+          readonly={readonly}
         />
       </CustomDiv>
 
@@ -47,6 +50,7 @@ const InvoiceTableHeader = ({
           onChange={handleChangeLabel}
           pdfMode={pdfMode}
           name="item_quantity"
+          readonly={readonly}
         />
       </CustomDiv>
 
@@ -57,6 +61,7 @@ const InvoiceTableHeader = ({
           onChange={handleChangeLabel}
           pdfMode={pdfMode}
           name="item_price"
+          readonly={readonly}
         />
       </CustomDiv>
 
@@ -67,6 +72,7 @@ const InvoiceTableHeader = ({
           onChange={handleChangeLabel}
           pdfMode={pdfMode}
           name="item_total"
+          readonly={readonly}
         />
       </CustomDiv>
     </CustomDiv>

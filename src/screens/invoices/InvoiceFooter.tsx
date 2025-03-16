@@ -6,10 +6,16 @@ import { Invoice } from "@/lib/models";
 import { useState } from "react";
 interface InvoiceFooterProps {
   pdfMode?: boolean;
+  readonly?: boolean;
   invoice: Invoice;
   onChange?: (name: string, value: GenericObject) => void;
 }
-const InvoiceFooter = ({ pdfMode, invoice, onChange }: InvoiceFooterProps) => {
+const InvoiceFooter = ({
+  pdfMode,
+  invoice,
+  onChange,
+  readonly,
+}: InvoiceFooterProps) => {
   const [label, setLabel] = useState<Invoice["label"]>(invoice.label);
   const [footer, setFooter] = useState<Invoice["footer"]>(invoice.footer);
 
@@ -40,6 +46,7 @@ const InvoiceFooter = ({ pdfMode, invoice, onChange }: InvoiceFooterProps) => {
           onChange={handleChangeLabel}
           pdfMode={pdfMode}
           name="notes"
+          readonly={readonly}
         />
         <CustomTextArea
           className="w-100"
@@ -49,6 +56,8 @@ const InvoiceFooter = ({ pdfMode, invoice, onChange }: InvoiceFooterProps) => {
           pdfMode={pdfMode}
           onChange={handleChangeFooter}
           name="notes"
+          readOnly={readonly}
+          resizable={readonly}
         />
       </CustomDiv>
 
@@ -60,6 +69,7 @@ const InvoiceFooter = ({ pdfMode, invoice, onChange }: InvoiceFooterProps) => {
           onChange={handleChangeLabel}
           pdfMode={pdfMode}
           name="terms"
+          readonly={readonly}
         />
         <CustomTextArea
           className="w-100"
@@ -69,6 +79,8 @@ const InvoiceFooter = ({ pdfMode, invoice, onChange }: InvoiceFooterProps) => {
           pdfMode={pdfMode}
           onChange={handleChangeFooter}
           name="terms"
+          readOnly={readonly}
+          resizable={readonly}
         />
       </CustomDiv>
     </CustomDiv>

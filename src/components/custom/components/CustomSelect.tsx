@@ -1,6 +1,7 @@
 import { Text } from "@react-pdf/renderer";
 import compose from "../composeStyle";
 import { ChangeEvent, useState } from "react";
+import { Label } from "@/components/ui/label";
 
 interface CustomSelectProps {
   className?: string;
@@ -10,8 +11,10 @@ interface CustomSelectProps {
   value?: string;
   autoFocus?: boolean;
   readOnly?: boolean;
+  label?: string;
   name: string;
   options: { label: string; value: string }[];
+  style?: React.CSSProperties;
 }
 const CustomSelect = ({
   className,
@@ -23,6 +26,8 @@ const CustomSelect = ({
   autoFocus = true,
   readOnly = true,
   name,
+  label,
+  style,
 }: CustomSelectProps) => {
   const classeSelect = "select " + (className ?? "");
   const classeSpan = "span " + (className ?? "");
@@ -40,7 +45,8 @@ const CustomSelect = ({
     }
   };
   return (
-    <>
+    <div style={style}>
+      {label && <Label htmlFor={name}>{label}</Label>}
       {isEditing ? (
         <select
           className={classeSelect}
@@ -48,6 +54,7 @@ const CustomSelect = ({
           onBlur={() => setIsEditing(false)}
           value={value}
           autoFocus={autoFocus}
+          onMouseLeave={() => setIsEditing(false)}
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -63,9 +70,10 @@ const CustomSelect = ({
           type="text"
           placeholder={placeholder}
           onFocus={() => setIsEditing(true)}
+          onMouseEnter={() => setIsEditing(true)}
         />
       )}
-    </>
+    </div>
   );
 };
 

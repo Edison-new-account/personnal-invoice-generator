@@ -75,8 +75,9 @@ const InvoicesList = ({ setCurrentInvoice }: InvoicesListProps) => {
         created_at: formatDate(created_at),
         status,
         title: invoice.label.title,
-        invoice_number: invoice.label.invoice_number,
-        total: invoice.body.total,
+        invoice_number: invoice.header.invoice.number,
+        total: `${invoice.body.total}`,
+        currency: invoice.header.invoice.currency,
       };
     });
   };

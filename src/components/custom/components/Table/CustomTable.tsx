@@ -22,7 +22,6 @@ interface DataTableDemoProps<T> {
   filtrableColumns?: string[];
 }
 
-// Composant générique
 export function DataTableDemo<T>({
   columns,
   data,

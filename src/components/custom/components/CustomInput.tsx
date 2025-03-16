@@ -12,6 +12,7 @@ interface CustomInputProps {
   value?: string | number;
   name: string;
   type?: InputType;
+  readonly?: boolean;
 }
 
 const CustomInput = ({
@@ -22,6 +23,7 @@ const CustomInput = ({
   value,
   name,
   type = InputType.TEXT,
+  readonly,
 }: CustomInputProps) => {
   const classeSpan = "span " + (className ?? "");
   const classeInput = "input " + (className ?? "");
@@ -48,6 +50,7 @@ const CustomInput = ({
       onChange={handleChange}
       value={value as string | number}
       type={type}
+      readOnly={readonly}
     />
   );
 };

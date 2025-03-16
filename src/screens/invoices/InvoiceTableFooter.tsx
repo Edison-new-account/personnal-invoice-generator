@@ -10,12 +10,14 @@ import { useEffect, useState } from "react";
 interface InvoiceTableFooterProps {
   invoice: Invoice;
   pdfMode?: boolean;
+  readonly?: boolean;
   onChange?: (name: string, value: GenericObject) => void;
   onAdd?: () => void;
 }
 const InvoiceTableFooter = ({
   invoice,
   pdfMode,
+  readonly,
   onChange,
   onAdd,
 }: InvoiceTableFooterProps) => {
@@ -57,7 +59,7 @@ const InvoiceTableFooter = ({
     <CustomDiv className="flex justify-end mt-10" pdfMode={pdfMode}>
       {/* Add item button */}
       <CustomDiv className="w-50 mt-10" pdfMode={pdfMode}>
-        {!pdfMode && (
+        {!pdfMode && !readonly && (
           <button className="link" onClick={onAdd}>
             <span className="icon icon-add bg-green mr-10"></span>
             Add Line Item
@@ -68,7 +70,7 @@ const InvoiceTableFooter = ({
       {/* Sous total, tax, total */}
       <CustomDiv className="w-50 mt-20" pdfMode={pdfMode}>
         {/* Sous total */}
-        <CustomDiv className="flex  p-5" pdfMode={pdfMode}>
+        <CustomDiv className="flex p-5" pdfMode={pdfMode}>
           <CustomDiv className="w-50 p-5" pdfMode={pdfMode}>
             <CustomInput
               className="bold"
@@ -76,9 +78,10 @@ const InvoiceTableFooter = ({
               onChange={onChangeLabel}
               pdfMode={pdfMode}
               name="sub_total"
+              readonly={readonly}
             />
           </CustomDiv>
-          <CustomDiv className="w-50 p-5" pdfMode={pdfMode}>
+          <CustomDiv className="grow p-5" pdfMode={pdfMode}>
             <CustomText className="dark right" pdfMode={pdfMode}>
               {computeTotal()}
             </CustomText>
@@ -95,23 +98,25 @@ const InvoiceTableFooter = ({
                 onChange={onChangeLabel}
                 pdfMode={pdfMode}
                 name="sub_tax"
+                readonly={readonly}
               />
             </CustomDiv>
-            <CustomDiv className="w-50 p-5" pdfMode={pdfMode}>
+            <CustomDiv className="w-20 p-5" pdfMode={pdfMode}>
               <CustomInput
-                className="bold"
+                className="dark right"
                 value={invoiceBody.sub_tax}
                 onChange={onChangeBody}
                 pdfMode={pdfMode}
                 name="sub_tax"
                 type={InputType.NUMBER}
+                readonly={readonly}
               />
             </CustomDiv>
           </CustomDiv>
 
-          <CustomDiv className="w-50 p-5" pdfMode={pdfMode}>
+          <CustomDiv className="grow p-5" pdfMode={pdfMode}>
             <CustomText className="dark right" pdfMode={pdfMode}>
-              {computeSubTax().toFixed(2)}
+              {computeSubTax().toFixed(0)}
             </CustomText>
           </CustomDiv>
         </CustomDiv>
@@ -125,6 +130,7 @@ const InvoiceTableFooter = ({
               onChange={onChangeLabel}
               pdfMode={pdfMode}
               name="total"
+              readonly={readonly}
             />
           </CustomDiv>
           <CustomDiv className="w-50 p-5" pdfMode={pdfMode}>

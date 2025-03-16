@@ -12,6 +12,7 @@ interface CustomCalendarProps {
   selectedDate?: Date;
   name: string;
   format?: string;
+  readonly?: boolean;
 }
 const CustomCalendar = ({
   className,
@@ -22,6 +23,7 @@ const CustomCalendar = ({
   selectedDate,
   name,
   format = "MMM dd, yyyy",
+  readonly,
 }: CustomCalendarProps) => {
   const classeSpan = "span " + (className ?? "");
   const classeInput = "input " + (className ?? "");
@@ -43,6 +45,7 @@ const CustomCalendar = ({
       placeholderText={placeholder}
       onChange={handleChange}
       dateFormat={format}
+      readOnly={readonly}
     />
   );
 };

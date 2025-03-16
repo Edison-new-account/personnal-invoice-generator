@@ -8,9 +8,14 @@ import { Route, Routes } from "react-router";
 interface InvoicePageRoutesProps {
   invoice: Invoice;
   setInvoice?: (invoice: Invoice) => void;
+  readonly?: boolean;
 }
 
-const InvoicePageRoutes = ({ invoice, setInvoice }: InvoicePageRoutesProps) => {
+const InvoicePageRoutes = ({
+  invoice,
+  setInvoice,
+  readonly,
+}: InvoicePageRoutesProps) => {
   return (
     <Routes>
       <Route
@@ -34,7 +39,11 @@ const InvoicePageRoutes = ({ invoice, setInvoice }: InvoicePageRoutesProps) => {
         <Route
           path="/edit/:invoice_id"
           element={
-            <InvoiceDocument invoice={invoice} setInvoice={setInvoice} />
+            <InvoiceDocument
+              invoice={invoice}
+              setInvoice={setInvoice}
+              readonly={readonly}
+            />
           }
         />
 

@@ -56,18 +56,31 @@ const InvoiceHeader = z.object({
   }),
 
   invoice: z.object({
+    light_format: z.boolean().optional().default(false),
     number: z.string(),
     date: z.union([z.date(), z.string()]),
     due_date: z.union([z.date(), z.string()]),
+    currency: z.string().optional().default("USD"),
   }),
+
+  lightFormat: z
+    .object({
+      from: z.string().optional(),
+      to: z.string().optional(),
+      date: z.string().optional(),
+      due_date: z.string().optional(),
+    })
+    .optional(),
 });
 
 export type InvoiceHeader = z.infer<typeof InvoiceHeader>;
 
 export const InvoiceBody = z.object({
   items: z.array(InvoiceItem),
+
   sub_total: z.number().optional(),
   sub_tax: z.number().optional().default(0),
+  sub_discount: z.number().optional().default(0),
   total: z.number(),
 });
 export type InvoiceBody = z.infer<typeof InvoiceBody>;
@@ -90,9 +103,16 @@ export type Invoice = TypeOf<typeof TInvoice>;
 export type InvoiceTemplate = {
   id: string;
   created_at: Date;
-  status: "paid" | "pending" | "draft";
+  status: INVOICE_STATUS;
   invoice: Invoice;
 };
+
+export enum INVOICE_STATUS {
+  paid = "paid",
+  pending = "pending",
+  draft = "draft",
+  failed = "failed",
+}
 
 export const defaultInvoiceLabel: InvoiceLabel = {
   title: "Invoice",
@@ -120,9 +140,11 @@ export const defaultInvoiceHeader: InvoiceHeader = {
     name: "",
   },
   invoice: {
+    light_format: false,
     number: "INV-001",
     date: new Date(),
     due_date: new Date(),
+    currency: "USD",
   },
 };
 
@@ -131,6 +153,7 @@ export const defaultInvoiceBody: InvoiceBody = {
   sub_total: 0,
   sub_tax: 10,
   total: 0,
+  sub_discount: 0, // sub_tax * sub_total / 100
 };
 
 export const defaultInvoiceFooter: InvoiceFooter = {
